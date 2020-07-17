@@ -19,7 +19,7 @@ class CekPengumuman
     {
         if (!Session::get('login')) {
          return redirect('/sign_in')->with('alert','Kamu harus login dulu');
-     } else if((!Session::get('level') == "Admin") || (!Session::get('level') == "Sekretaris Umum Qatulistiwa Islam"))  {
+     } else if((Session::get('level') !== "Admin") || (Session::get('level') !== "Sekretaris Umum Qatulistiwa Islam"))  {
         return redirect()->back();
     }
     return $next($request);
