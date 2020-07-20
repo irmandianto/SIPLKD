@@ -9,7 +9,6 @@
   <section class="content-header">
     <h1>
       Pendaftaran Instruktur
-      <small>Control panel</small>
     </h1>
 
   </section>
@@ -49,6 +48,14 @@
                 <td>{{$users->username}}</td>
                 <td>{{$users->email_user}}</td>
                 <td>{{$users->kontak_user}}</td>
+                <td>
+                  <form action="{{ route('datainstruktur.destroy',$users->id)}}" method="POST">
+                    <a href="{{ route('datainstruktur.edit',$users->id)}}" type="button" class="btn btn-primary">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                  </form>
+                </td>
               </tr>
               @endforeach
             </table>

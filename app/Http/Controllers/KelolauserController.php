@@ -77,13 +77,13 @@ class KelolauserController extends Controller
 	private function validateData()
 	{
 		return request()->validate([
-			'nama_lengkap' => 'required',
+			'nama_lengkap_user' => 'required',
 			'username' => 'required|unique:users',
 			'password' => 'required',
-			'email' => 'required',
+			'email_user' => 'required',
 			'level' => 'required',
 			'jk_user' => 'required',
-			'kontak' => 'required'
+			'kontak_user' => 'required'
 		]);
 	}
 	public function listmhs()

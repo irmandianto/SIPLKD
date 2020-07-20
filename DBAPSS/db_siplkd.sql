@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 17, 2020 at 02:43 PM
+-- Generation Time: Jul 20, 2020 at 04:56 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -41,7 +41,8 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `judul`, `isi_artikel`, `tgl_artikel`, `created_at`, `updated_at`) VALUES
-(1, 'Sholat dhuha', 'kasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalk\r\nkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalk\r\nkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalk', '2020-07-22', '2020-07-17 00:00:05', '2020-07-17 00:00:05');
+(1, 'Sholat dhuha', 'kasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalk\r\nkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalk\r\nkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalkkasjdksajdddddddddddddddddddddddddddalsdsalkdklsandlksanlkdsalk', '2020-07-22', '2020-07-17 00:00:05', '2020-07-17 00:00:05'),
+(2, 'asdsa', '<p><b><small>Halo semua nya kepada teman-teman yang baik hati dan tidak sombong</small></b></p>', '0002-02-22', '2020-07-20 09:49:12', '2020-07-20 09:55:30');
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `fakultas` (
   `id_fakultas` int(10) UNSIGNED NOT NULL,
-  `nama_fakultas` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_fakultas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -230,9 +231,21 @@ INSERT INTO `laporankajians` (`id_laporankajian`, `judul_laporan`, `file_laporan
 
 CREATE TABLE `layanans` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `foto_layanan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `judul_layanan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `layanans`
+--
+
+INSERT INTO `layanans` (`id`, `foto_layanan`, `judul_layanan`, `created_at`, `updated_at`) VALUES
+(1, 'grandopenin_1595263182.jpg', 'Grand opening ceremony kajian Dhuha', '2020-07-20 09:34:26', '2020-07-20 09:39:42'),
+(2, 'pelatihanislam_1595263203.jpg', 'Pelatihan wawasan Islam', '2020-07-20 09:40:03', '2020-07-20 09:40:03'),
+(3, 'jenzah_1595263218.jpg', 'Pelatihan penyelenggaraan jenazah', '2020-07-20 09:40:18', '2020-07-20 09:40:18'),
+(4, 'pelatihaninstruktur_1595263229.jpg', 'Pelatihan instruktur', '2020-07-20 09:40:29', '2020-07-20 09:40:29');
 
 -- --------------------------------------------------------
 
@@ -269,7 +282,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (36, '2020_07_09_055331_create_laporankajians_table', 11),
 (37, '2020_07_15_161130_create_layanans_table', 12),
 (38, '2020_07_15_161642_create_events_table', 12),
-(39, '2020_07_15_161708_create_articles_table', 12);
+(39, '2020_07_15_161708_create_articles_table', 12),
+(40, '2020_07_20_161251_create_layanans_table', 13);
 
 -- --------------------------------------------------------
 
@@ -435,8 +449,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama_lengkap_user`, `username`, `password`, `email_user`, `level`, `jk_user`, `kontak_user`, `foto_user`, `created_at`, `updated_at`) VALUES
-(5, 'Admin Sistem', 'admin', '$2y$12$ZmgB1S6jb8HOtaXWXjQ4KO6ljbnGrrtihJ5BuEvyk2nT3cWgtUwBK', 'admin@gmail.com', 'Admin', 'Laki - Laki', '123123', '', NULL, NULL),
-(6, 'Hanny Eka Putri', 'hanny', '$2y$10$7icvdDe1451WDHnkQ66tteD7nN33rVmG/LSNUIr7Zh/DPk3s4PpN.', 'hannyeka@gmail.com', 'Instruktur', 'Laki - Laki', '081233323232', 'Gambar_1594991933.png', '2020-07-16 19:34:10', '2020-07-17 06:18:53'),
+(5, 'Admin Sistem', 'admin', '$2y$10$o.Ly1BRUxcEb0DZoHgNsa.XXOU90DIqrPX5URK.OEIa/FNO6gcU8m', 'admin@gmail.com', 'Admin', 'Laki - Laki', '123123', 'ktpkeluarga_1595220567.jpg', NULL, '2020-07-19 21:49:28'),
+(6, 'Hanny Eka Putri212', 'hanny', '$2y$10$np8I83t1PigRTivJv9owjOZaAZ4ECZafpDwJFdI/c4eMDdIIg9JDy', 'hannyeka@gmail.com', 'Instruktur', 'Perempuan', '081233323232', 'Gambar_1594991933.png', '2020-07-16 19:34:10', '2020-07-20 08:48:38'),
 (7, 'Mela Sintia', 'mela', '$2y$10$ur.qYliYA6Ks6JIgemlFWeFdaKKchx8NriqoM4pI26dQ5anNg9Rni', 'mela@gmail.com', 'Dosen', 'Perempuan', '1232131123', '', '2020-07-16 19:37:28', '2020-07-16 19:37:28'),
 (8, 'Akbar Maulana', 'akbar', '$2y$10$mxdCFX8W82RT24M4SWgKqugVGJhq2kLkrKqAqGNrmlVeAu02XwDyS', 'akbar@gmail.com', 'Sekretaris Umum Lembaga Dakwah Kampus', 'Laki - Laki', '123123213', '', '2020-07-16 19:38:27', '2020-07-16 19:38:27'),
 (9, 'Hendra', 'hendra', '$2y$10$kDbQiOMHd0.pcnP7PziTp.6k8xPVc3dsis/hTjMosCPcfke1SwMDS', 'hendra@gmail.com', 'Sekretaris Umum Qatulistiwa Islam', 'Laki - Laki', '12312312321', '', '2020-07-16 19:39:07', '2020-07-16 19:39:07');
@@ -584,7 +598,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bahanmateris`
@@ -644,13 +658,13 @@ ALTER TABLE `laporankajians`
 -- AUTO_INCREMENT for table `layanans`
 --
 ALTER TABLE `layanans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `nilaikajiandhuhas`
@@ -668,7 +682,7 @@ ALTER TABLE `pengumumen`
 -- AUTO_INCREMENT for table `pesertakajiandhuhas`
 --
 ALTER TABLE `pesertakajiandhuhas`
-  MODIFY `id_pesertakajian` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pesertakajian` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pesertas`
@@ -680,7 +694,7 @@ ALTER TABLE `pesertas`
 -- AUTO_INCREMENT for table `seksikajiandhuhas`
 --
 ALTER TABLE `seksikajiandhuhas`
-  MODIFY `id_seksi_kajian_dhuha` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_seksi_kajian_dhuha` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `seksikajians`
@@ -698,7 +712,7 @@ ALTER TABLE `seksipais`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

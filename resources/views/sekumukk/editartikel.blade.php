@@ -44,8 +44,19 @@
 								<input type="text" name="judul" class="form-control" id="exampleInputText1" placeholder="Judul Artikel" value="{{$artikel->judul}}">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputText1">Isi Artikel</label>
-								<textarea name="isi_artikel" class="form-control" id="exampleInputTextArea1" placeholder="Isi Artikel"  rows="20">{{$artikel->isi_artikel}}</textarea>
+								<div class="form-group">
+									<div class="box">
+										<div class="box-header">
+											<h3 class="box-title">Isi Artikel
+											</h3>
+										</div>
+										<!-- /.box-header -->
+										<div class="box-body pad">
+											<textarea class="textarea" name="isi_artikel" placeholder="Place some text here"
+											style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$artikel->isi_artikel}}</textarea>
+										</div>
+									</div>
+								</div>
 							</div>
 
 							<div class="form-group">

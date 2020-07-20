@@ -76,6 +76,7 @@ Route::group(['middleware' => 'cekukk'],  function(){
 	Route::get('/kodeseksii','Sekumudk\SekumudkController@index');
 	Route::resource('event','EventController');
 	Route::resource('artikel','ArtikelController');
+	Route::resource('klayanan','LayananController');
 	Route::get('/akunpengguna','Sekumudk\SekumudkController@indexp');
 	Route::get('/akunpengguna/cetak','Sekumudk\SekumudkController@indexpp');
 	Route::get('/laporankodeseksi','Sekumudk\SekumudkController@printkodeseksi');

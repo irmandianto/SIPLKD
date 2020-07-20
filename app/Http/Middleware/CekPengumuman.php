@@ -18,10 +18,14 @@ class CekPengumuman
     public function handle($request, Closure $next)
     {
         if (!Session::get('login')) {
-         return redirect('/sign_in')->with('alert','Kamu harus login dulu');
-     } else if((Session::get('level') !== "Admin") || (Session::get('level') !== "Sekretaris Umum Qatulistiwa Islam"))  {
+           return redirect('/sign_in')->with('alert','Kamu harus login dulu');
+       } 
+
+       if((Session::get('level') === "Admin") || (Session::get('level') === "Sekretaris Umum Qatulistiwa Islam"))  {
+        return $next($request);
+    }else {
         return redirect()->back();
     }
-    return $next($request);
+
 }
 }

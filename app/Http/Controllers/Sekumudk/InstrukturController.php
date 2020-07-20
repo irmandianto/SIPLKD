@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sekumudk;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InstrukturController extends Controller
 {
@@ -46,16 +47,16 @@ class InstrukturController extends Controller
             'kontak_user' => 'required'
         ]);
 
-        User::create([
-            'nama_lengkap_user' => $request->nama_lengkap_user,
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'email_user' => $request->email_user,
-            'level' => "Instruktur",
-            'jk_user' => $request->jk_user,
-            'kontak_user' => $request->kontak_user,
-            'foto_user' => ''
-        ]);
+        $userdata = new User;
+        $userdata->nama_lengkap_user = $request->nama_lengkap_user;
+        $userdata->username = $request->username;
+        $userdata->password = bcrypt($request->password);
+        $userdata->email_user = $request->email_user;
+        $userdata->level = "Instruktur";
+        $userdata->jk_user = $request->jk_user;
+        $userdata->kontak_user = $request->kontak_user;
+        $userdata->foto_user = "none.png";
+        $userdata->save();
         
         return redirect('datainstruktur')
         ->with('success','Berhasil ditambahkan!.');
@@ -80,7 +81,8 @@ class InstrukturController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editData = User::find($id);
+        return view('sekumudk.editinstruktur', compact('editData'));
     }
 
     /**
@@ -92,7 +94,27 @@ class InstrukturController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_lengkap_user' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'email_user' => 'required',
+            'jk_user' => 'required',
+            'kontak_user' => 'required'
+        ]);
+
+        $userdata = User::find($id);
+        $userdata->nama_lengkap_user = $request->nama_lengkap_user;
+        $userdata->username = $request->username;
+        $userdata->password = bcrypt($request->password);
+        $userdata->email_user = $request->email_user;
+        $userdata->level = $request->level;
+        $userdata->jk_user = $request->jk_user;
+        $userdata->kontak_user = $request->kontak_user;
+        $userdata->save();
+
+        return redirect('/datainstruktur')
+        ->with('success','Berhasil dieedit!.');
     }
 
     /**
@@ -103,7 +125,11 @@ class InstrukturController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delData = User::find($id);
+        Storage::delete('public/foto'.'/'.$delData->foto_user);
+        $delData->delete();
+        return redirect('/datainstruktur')
+        ->with('success','Berhasil dihapus!.');
     }
 
     public function datanilai()

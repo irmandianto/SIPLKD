@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Article;
+use App\Layanan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,7 +22,8 @@ class HomeController extends Controller
 	}
 	public function layanan()
 	{
-		return view('publik.layanan');
+		$layanan = Layanan::all();
+		return view('publik.layanan',compact('layanan'));
 	} 
 	public function event()
 	{

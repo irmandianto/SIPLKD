@@ -22,7 +22,7 @@
       <div class="row">
         <div class="card text-black bg-white mb-3" style="width: 100%;">
           <div class="card-body">
-            <p class="card-text"> {!! nl2br(e($artikel->isi_artikel)) !!}</p>
+            <p class="card-text"> {!! nl2br($artikel->isi_artikel) !!}</p>
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ class EventController extends Controller
 
          $path = $request->file('foto_event')->storeAs('public/event',$filenameSimpan);
      } else {
-        $filenameSimpan = 'noimg.jpg';
+          $filenameSimpan = 'none.png';
     }
     $event = Event::create([
         'nama_event' => $request->nama_event,
@@ -105,7 +105,7 @@ class EventController extends Controller
 
          $path = $request->file('foto_event')->storeAs('public/event',$filenameSimpan);
      } else {
-        $filenameSimpan = 'noimg.jpg';
+          $filenameSimpan = 'none.png';
     }
     $event = Event::find($id);
     $event->nama_event = $request->nama_event;

@@ -1,15 +1,16 @@
 @extends('layout.main')
 @section('konten')
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  @if(session('level') == "Admin")
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Kelola Kode Seksi Peserta</a></li>
+    <li><a href="/event"><i class="fa fa-dashboard"></i> Kelola Data Layanan</a></li>
   </ol>
   <section class="content-header">
+    <!--     <small>Tambah Bahan Materi Kajian Dhuha</small> -->
     <h1>
-      Kelola Kode Seksi Peserta
+      Layanan
     </h1>
 
   </section>
@@ -27,58 +28,33 @@
         </div>
         @endif
         <div class="box-header">
-          <a href="{{ route('kodeseksi.create')}}" class="btn btn-primary">Tambah Kode Seksi Peserta</a>
+          <a href="{{ route('klayanan.create')}}" class="btn btn-primary">Tambah Layanan</a>
         </div>
-      @else
-        <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Laporan Kode Seksi</a></li>
-
-  </ol>
-  <section class="content-header">
-    <h1>
-      Laporan Kode Seksi
-      <small>Control panel</small>
-    </h1>
-
-  </section>
-
-  <!-- Main content -->
-  <section class="content">
-    <!-- Small boxes (Stat box) -->
-    <div class="row">
-      <div class="box">
-        <div class="box-header">
-          <a href="/laporankodeseksi" target="_blank" class="btn btn-primary">Cetak Kode Seksi Peserta</a>
-        </div>
-        @endif
-
         <!-- /.box-header -->
         <div class="box-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th>No</th>
-                <th>Kode Seksi Peserta</th>
-                @if(session('level') == "Admin")
+                <th>Nama Layanan</th>
+                <th>Foto Layanan</th>
                 <th>Action</th>
-                @endif
               </tr>
             </thead>
             <tbody>@php($no = 1)
-              @foreach($kodeseksi as $kodes)
+              @foreach($layanan as $layanans)
               <tr>
                 <td>{{$no++}}</td>
-                <td>{{$kodes->kode_seksi_peserta}}</td>
-                @if(session('level') == "Admin")
+                <td>{{$layanans->judul_layanan}}</td>
+                <td><img src="{{Storage::url('layanan/'.$layanans->foto_layanan)}}" width="150" height="150" class="rounded" alt="Foto Belum Di Upload"></td>
                 <td>
-                  <form action="{{ route('kodeseksi.destroy',$kodes->id)}}" method="POST">
-                    <a href="{{ route('kodeseksi.edit',$kodes->id)}}" type="button" class="btn btn-primary">Edit</a>
+                  <form action="{{ route('klayanan.destroy',$layanans->id)}}" method="POST">
+                    <a href="{{ route('klayanan.edit',$layanans->id)}}" type="button" class="btn btn-primary">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Hapus</button>
                   </form>
                 </td>
-                @endif
               </tr>
               @endforeach
             </table>

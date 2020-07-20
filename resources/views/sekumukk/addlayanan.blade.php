@@ -5,11 +5,11 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<ol class="breadcrumb">
-		<li><a href="/event"><i class="fa fa-dashboard"></i> Kelola Data Event</a></li>
-		<li class="active">Tambah Event</li>
+		<li><a href="/klayanan"><i class="fa fa-dashboard"></i> Kelola Data Layanan</a></li>
+		<li class="active">Tambah Layanan</li>
 	</ol>
 	<section class="content-header">
-		<small>Tambah Event</small>
+		<small>Tambah Layanan</small>
 <!-- 		<h1>
 			Unggah Bahan Materi Kajian Dhuha
 		</h1> -->
@@ -31,32 +31,28 @@
 					</div>
 					@endif
 					<div class="box-header with-border">
-						<h3 class="box-title">Tambah Event HomePage</h3>
+						<h3 class="box-title">Tambah Layanan </h3>
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form role="form" action="{{route('event.store')}}" method="POST" enctype="multipart/form-data">
+					<form role="form" action="{{route('klayanan.store')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="box-body">
 							<div class="form-group">
-								<label for="exampleInputText1">Nama Event</label>
-								<input type="text" name="nama_event" class="form-control" id="exampleInputText1" placeholder="Nama Event">
-							</div>
-							<div class="form-group">
-								<label for="exampleInputText1">Deskripsi Event</label>
-								<input type="text" name="deskripsi_event" class="form-control" id="exampleInputText1" placeholder="Deskripsi event">
+								<label for="exampleInputText1">Judul Layanan</label>
+								<input type="text" name="judul_layanan" class="form-control" id="exampleInputText1" placeholder="Judul Layanan">
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputFile">Foto Event</label>
-								<input type="file" name="foto_event" id="exampleInputFile">
+								<label for="exampleInputFile">Foto Layanan</label>
+								<input type="file" name="foto_layanan" id="exampleInputFile">
 							</div>
 						</div>
 						<!-- /.box-body -->
 
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
-							<a  href="/event" type="button" class="btn btn-warning">Kembali</a>
+							<a  href="/klayanan" type="button" class="btn btn-warning">Kembali</a>
 						</div>
 					</form>
 				</div>

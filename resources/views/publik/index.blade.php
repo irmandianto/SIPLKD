@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
-          <h1>Qatulistiwa Islam</h1>
+          <h2>Sistem Informasi Pengolahan Layanan Kajian Dhuha</h2>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
             {{$artikels->judul}}
           </h2>
           <h3 class="post-subtitle">
-            {{ Str::limit($artikels->isi_artikel, 30) }}
+            {!! nl2br(Str::limit($artikels->isi_artikel, 30)) !!}
           </h3>
         </a>
         <p class="post-meta">Posted by

@@ -288,11 +288,6 @@
         </a>
       </li>
       <li>
-        <a href="/kodeseksii">
-          <i class="fa fa-dashboard"></i> <span>Laporan Kode Seksi Peserta</span>
-        </a>
-      </li>
-      <li>
         <a href="/akunpengguna">
           <i class="fa fa-dashboard"></i> <span>Laporan Akun Pengguna</span>
         </a>
@@ -305,6 +300,11 @@
       <li>
         <a href="{{route('event.index')}}">
           <i class="fa fa-dashboard"></i> <span>Kelola Event</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{route('klayanan.index')}}">
+          <i class="fa fa-dashboard"></i> <span>Kelola Layanan</span>
         </a>
       </li>
       <li>
