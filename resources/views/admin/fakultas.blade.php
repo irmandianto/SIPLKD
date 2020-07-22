@@ -9,7 +9,6 @@
   <section class="content-header">
     <h1>
       Kelola Data Fakultas
-      <small>Control panel</small>
     </h1>
 
   </section>

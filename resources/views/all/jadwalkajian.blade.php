@@ -9,7 +9,6 @@
   <section class="content-header">
     <h1>
       Kelola Jadwal
-      <small>Control panel</small>
     </h1>
 
   </section>
