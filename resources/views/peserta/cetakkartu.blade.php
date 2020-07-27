@@ -57,21 +57,17 @@
     <div class="col-sm-4 invoice-col">
       <h3>Biodata Peserta</h3>
       <address>
-
-        @foreach($kartu as $kartus)
-        Nama :  <strong>{{$kartus->nama_lengkap}}</strong><br>
-        NIM : {{$kartus->nama_lengkap}}<br>
-        Alamat :{{$kartus->alamat}}<br>
-        Jenis Kelamin : {{$kartus->jk}}<br>
-        Fakultas : {{$kartus->fakultas}}<br>
-        Dosen PAI : {{$kartus->dosenpai}}<br>
-        Email: {{$kartus->email}}
-        @endforeach
-
+        Nama :  <strong>{{$datapeserta->nama_lengkap}}</strong><br>
+        NIM : {{$datapeserta->nama_lengkap}}<br>
+        Alamat :{{$datapeserta->alamat}}<br>
+        Jenis Kelamin : {{$datapeserta->jk}}<br>
+        Fakultas : {{$datapeserta->fakultas}}<br>
+        Dosen PAI : {{$datapeserta->dosenpai}}<br>
+        Email: {{$datapeserta->email}}
       </address>
     </div>
     <div class="text-right">
-      <img src="{{Storage::url('foto/'.$kartus->foto)}}" width="150" height="150" class="rounded" alt="Foto Belum Di Upload">
+      <img src="{{Storage::url('foto/'.$datapeserta->foto)}}" width="150" height="150" class="rounded" alt="Foto Belum Di Upload">
     </div> 
 
     <!-- Table row -->
@@ -88,20 +84,20 @@
           </tr>
         </thead>
         <tbody>@php($no = 1)
-          @foreach($kartu as $kartus)
+          @foreach($kartu as $data)
           <tr>
             <td>{{$no++}}</td>
-            <td>{{$kartus->seksi_kajian_dhuha}}<br>
-              <h6>Instruktur : {{$kartus->nama_lengkap_user}}</h6></td>
-              <td>{{$kartus->hari_kajian}}, 
-                {{ \Carbon\Carbon::parse($kartus->jam_kajian)->format('H:i')}}
-                -    {{ \Carbon\Carbon::parse($kartus->akhir_kajian)->format('H:i')}}</td>
-                <td> {{$kartus->kapasitas}} </td>
+            <td>{{$data->seksi_kajian_dhuha}}<br>
+              <h6>Instruktur : {{$data->nama_lengkap_user}}</h6></td>
+              <td>{{$data->hari_kajian}}, 
+                {{ \Carbon\Carbon::parse($data->jam_kajian)->format('H:i')}}
+                -    {{ \Carbon\Carbon::parse($data->akhir_kajian)->format('H:i')}}</td>
+                <td> {{$data->kapasitas}} </td>
                 <td>
-                  @if(empty($kartus->foto_user))
+                  @if(empty($data->foto_user))
                   <img src="{{Storage::url('none.png')}}" width="50" height="50" class="img-circle" alt="User Image" class="img-circle">
                   @else
-                  <img src="{{ Storage::url('foto/'.$kartus->foto_user) }}" width="50" height="50" class="img-circle" alt="User Image">
+                  <img src="{{ Storage::url('foto/'.$data->foto_user) }}" width="50" height="50" class="img-circle" alt="User Image">
                   @endif
                 </td>
               </tr>

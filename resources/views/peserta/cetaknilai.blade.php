@@ -122,7 +122,7 @@
               </tr>
               <tr>
                 <td>3</td>
-                <td>Praktik Sholat Jenazah</td>
+                <td>Nilai Ujian Akhir</td>
                 @foreach($evaluasi as $eva)
                 <td>
                   {{$nilaiakhir = $eva->nilai_ujian}}

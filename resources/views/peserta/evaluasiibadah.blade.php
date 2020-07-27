@@ -4,8 +4,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Evaluasi Ibadah Kajian Dhuha</li>
+    <li><a href="#"><i class="fa fa-dashboard"></i> Evaluasi Ibadah Kajian Dhuha</a></li>
   </ol>
   <section class="content-header">
 

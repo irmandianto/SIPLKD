@@ -27,13 +27,13 @@ class KelolauserController extends Controller
 
 
 		User::create([
-			'nama_lengkap_user' => $request->nama_lengkap,
+			'nama_lengkap_user' => $request->nama_lengkap_user,
 			'username' => $request->username,
 			'password' => bcrypt($request->password),
-			'email_user' => $request->email,
+			'email_user' => $request->email_user,
 			'level' => $request->level,
 			'jk_user' => $request->jk_user,
-			'kontak_user' => $request->kontak,
+			'kontak_user' => $request->kontak_user,
 			'foto_user' => ''
 		]);
 		
@@ -43,18 +43,25 @@ class KelolauserController extends Controller
 	}
 	public function update(Request $request,$id)
 	{
-		
-		$data = $this->validateData();
+		$request->validate([
+			'nama_lengkap_user' => 'required',
+			'username' => 'required',
+			'password' => 'required',
+			'email_user' => 'required',
+			'level' => 'required',
+			'jk_user' => 'required',
+			'kontak_user' => 'required'
+		]);
 
 		$userdata = User::find($id);
-		$userdata->nama_lengkap_user = $request->nama_lengkap;
+		$userdata->nama_lengkap_user = $request->nama_lengkap_user;
 		$userdata->username = $request->username;
 		$userdata->password = bcrypt($request->password);
-		$userdata->email_user = $request->email;
+		$userdata->email_user = $request->email_user;
 		$userdata->level = $request->level;
 		$userdata->jk_user = $request->jk_user;
-		$userdata->kontak_user = $request->kontak;
-		$userdata->foto_user = 'none.jpg';
+		$userdata->kontak_user = $request->kontak_user;
+		$userdata->foto_user = "";
 		$userdata->save();
 
 		return redirect('/users')

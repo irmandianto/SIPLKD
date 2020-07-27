@@ -10,8 +10,7 @@
 	</ol>
 	<section class="content-header">
 		<h1>
-			Kelola Jawdwal
-			<small>Control panel</small>
+			Kelola Jadwal
 		</h1>
 
 	</section>

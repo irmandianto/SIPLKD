@@ -10,7 +10,7 @@ class User extends Model
      protected $table = "users";
 
     protected $fillable = [
-        'id','nama_lengkap_user', 'username', 'password','email_user','level','jk_user','kontak_user'
+        'id','nama_lengkap_user', 'username', 'password','email_user','level','jk_user','kontak_user','foto_user'
     ];
 
     public function suser()

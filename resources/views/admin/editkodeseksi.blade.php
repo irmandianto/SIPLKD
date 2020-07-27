@@ -10,8 +10,7 @@
 	</ol>
 	<section class="content-header">
 		<h1>
-			Kelola Kode Seksi 
-			<small>Control panel</small>
+			Kelola Kode Seksi
 		</h1>
 		
 	</section>
@@ -48,6 +47,7 @@
 
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
+							<a type="button" href="/kodeseksi" class="btn btn-warning">Kembali</a>
 						</div>
 					</form>
 				</div>

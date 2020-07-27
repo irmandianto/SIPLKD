@@ -11,7 +11,6 @@
 	<section class="content-header">
 		<h1>
 			Kelola Kode Seksi
-			<small>Control panel</small>
 		</h1>
 
 	</section>

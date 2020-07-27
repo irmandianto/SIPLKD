@@ -61,13 +61,14 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="col-md-5 text-right">
-
+	
 										<label>Kehadiran</label> 	 <input type="number" name="kehadiran"><br>
 										<label>Keaktifan</label> 	 <input type="number" name="keaktifan"><br>
 										<label>Praktik Shalat Jenazah</label> 	 <input type="number" name="praktik_ibadah"><br>
 										<label>Ujian Akhir</label> 	 <input type="number" name="ujianakhir">
 									</div>
 									<div class="col-md-7 text-left">
+										<input type="hidden" name="id_peserta" value="{{$carikajian->id_peserta}}">
 										<label>Huruf</label> 	 <input type="text" name="huruf_kehadiran" style="width: 90%"><br>
 										<label>Huruf</label> 	 <input type="text" name="huruf_keaktifan" style="width: 90%"><br>
 										<label>Huruf</label> 	 <input type="text" name="huruf_praktikibadah" style="width: 90%"><br>

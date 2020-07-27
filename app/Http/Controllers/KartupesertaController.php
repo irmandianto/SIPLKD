@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use DB;
 use App\Http\Controllers\Controller;
 use App\Kajiandhuha;
+use App\Evaluasiibadah;
 use App\User;
 use App\Seksikajiandhuha;
 use App\Pesertakajiandhuha;
 use App\Peserta;
+use App\Nilaikajiandhuha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -52,7 +54,7 @@ class KartupesertaController extends Controller
             $hitung = Pesertakajiandhuha::where('id_seksi_kajian_dhuha','LIKE','%'.$key->id_seksi_kajian_dhuha.'%')->count();
             //dd($key);
         }
-        return view('peserta.addkartukajian',compact('jadwal','userphoto','kajian','cari','hitung'));
+        return view('peserta.addkartukajian',compact('jadwal'));
     }
 
     /**
@@ -117,31 +119,38 @@ class KartupesertaController extends Controller
     public function destroy($id_pesertakajian)
     {
         $delete = Pesertakajiandhuha::find($id_pesertakajian);
-        $delete->delete();
-        return redirect('kartukajian')->with('success','Berhasil dihapus');
-    }
-    public function print(Request $request)
-    {
-        $id = Session::get('id');
-        $cek = Pesertakajiandhuha::where('id_peserta','=',$id)->count();
-        if($cek > 0)
+        $cari = Nilaikajiandhuha::where('id_peserta','=',$delete->id_peserta)->count();
+        
+        if($cari > 0)
         {
-         $kartu = DB::table('pesertakajiandhuhas')
-         ->join('seksikajiandhuhas','pesertakajiandhuhas.id_seksi_kajian_dhuha', '=', 'seksikajiandhuhas.id_seksi_kajian_dhuha')
-         ->join('pesertas','pesertakajiandhuhas.id_peserta','=','pesertas.id_peserta')
-         ->join('kajiandhuhas','seksikajiandhuhas.id_jadwal','=','kajiandhuhas.id_jadwal')
-         ->join('users','seksikajiandhuhas.id_instruktur','=','users.id')
-         ->select('pesertas.*','seksikajiandhuhas.*','kajiandhuhas.*','users.*','pesertakajiandhuhas.*')
-         ->where('pesertas.id_peserta','LIKE',$id)
-         ->get();
-        // /dd($kartu);
+           return redirect('kartukajian')->with('error','Maaf data nilai anda masih di entri kan oleh instuktur harap cetak dahulu sebelum dihapus oleh instuktur!');
+       }else if($cari == 0) {
+          $delete->delete();
+          return redirect('kartukajian')->with('success','Berhasil dihapus');
+      }
+  }
+  public function print(Request $request)
+  {
+    $id = Session::get('id');
+    $datapeserta = Peserta::find($id);
+    $cek = Pesertakajiandhuha::where('id_peserta','=',$id)->count();
+    if($cek > 0)
+    {
+       $kartu = DB::table('pesertakajiandhuhas')
+       ->join('seksikajiandhuhas','pesertakajiandhuhas.id_seksi_kajian_dhuha', '=', 'seksikajiandhuhas.id_seksi_kajian_dhuha')
+       ->join('pesertas','pesertakajiandhuhas.id_peserta','=','pesertas.id_peserta')
+       ->join('kajiandhuhas','seksikajiandhuhas.id_jadwal','=','kajiandhuhas.id_jadwal')
+       ->join('users','seksikajiandhuhas.id_instruktur','=','users.id')
+       ->select('pesertas.*','seksikajiandhuhas.*','kajiandhuhas.*','users.*','pesertakajiandhuhas.*')
+       ->where('pesertas.id_peserta','LIKE',$id)
+       ->get();
 
-         return view('peserta.cetakkartu',compact('kartu'));
+       return view('peserta.cetakkartu',compact('kartu','datapeserta'));
 
-     }else if($cek == 0)
-     {
-       return redirect('/kartukajian')->with('success','Maaf anda anda belum memilih jadwal kajian!');
-   }
+   }else if($cek == 0)
+   {
+     return redirect('/kartukajian')->with('success','Maaf anda anda belum memilih jadwal kajian!');
+ }
 }
 }
 

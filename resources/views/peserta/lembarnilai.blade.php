@@ -5,7 +5,7 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<ol class="breadcrumb">
-		<li><a href="/bahan"><i class="fa fa-dashboard"></i>Lembar nilai tutorial PAI </a></li>
+		<li><a href="/bahan"><i class="fa fa-dashboard"></i>Lembar Nilai Kajian Dhuha </a></li>
 	</ol>
 	<section class="content-header">
 		<small>Nilai Peserta</small>
@@ -29,7 +29,6 @@
 					@endif
 
 					<div class="box-header with-border">
-						<h3 class="box-title">Nilai Tutorial PAI</h3>
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
@@ -78,7 +77,7 @@
 								</tr>
 								<tr>
 									<td>3</td>
-									<td>Praktik Sholat Jenazah</td>
+									<td>Nilai Ujian Akhir</td>
 									@foreach($evaluasi as $eva)
 									<td>
 										{{$nilaiakhir = $eva->nilai_ujian}}

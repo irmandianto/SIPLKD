@@ -11,7 +11,6 @@
 	<section class="content-header">
 		<h1>
 			Kelola Pengumuman
-			<small>Control panel</small>
 		</h1>
 	</section>
 	<section class="content">

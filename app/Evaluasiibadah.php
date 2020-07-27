@@ -10,7 +10,7 @@ class Evaluasiibadah extends Model
 
     protected $table = 'evaluasiibadahs';
 
-    protected $fillable = ['id_evaluasi','id_peserta','tgl_evaluasi','shalat_berjamaah','shalat_dhuha','tilawah_quran','qiyamul_lail'];
+    protected $fillable = ['id_evaluasi','id_peserta','id_instruktur','tgl_evaluasi','shalat_berjamaah','shalat_dhuha','tilawah_quran','qiyamul_lail'];
 
     public function pesertas()
     {

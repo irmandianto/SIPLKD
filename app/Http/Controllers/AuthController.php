@@ -41,11 +41,13 @@ class AuthController extends Controller
             Session::put('level', $user->level);
             Session::put('login',TRUE);
             return redirect('/dashboard');
-          }
-        }
-        else{
+          } else{
+           return redirect('/sign_in')->with('alert','Username atau Password, Salah!');
+         }
+       } else{
          return redirect('/sign_in')->with('alert','Username atau Password, Salah!');
        }
+       
      }
 
      public function dashboard()

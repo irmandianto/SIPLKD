@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Evaluasiibadah;
 use App\Peserta;
 use App\Pesertakajiandhuha;
+use App\Seksikajiandhuha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use DB;
@@ -34,14 +35,14 @@ class EvaluasiibadahController extends Controller
     public function create()
     {
       $id = Session::get('id');
-
+      $kajian = Seksikajiandhuha::all();
       $data = Pesertakajiandhuha::where('id_peserta','=',$id)->count();
      // dd($data);
       if(empty($data))
       {
         return redirect('/evaluasi')->with('error','Anda belum mengambil jadwal kajian dhuha');
     }else{
-        return view('peserta.addevaluasi');
+        return view('peserta.addevaluasi',compact('kajian'));
     }
 }
 
@@ -54,6 +55,7 @@ class EvaluasiibadahController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_instruktur' => 'required',
             'tgl_evaluasi' => 'required',
             'shalat_berjamaah' => 'required',
             'tilawah_quran' => 'required',
@@ -64,6 +66,7 @@ class EvaluasiibadahController extends Controller
         $id = Session::get('id');
         $simpan = new Evaluasiibadah;
         $simpan->id_peserta = Session::get('id');
+        $simpan->id_instruktur = $request->id_instruktur;
         $simpan->tgl_evaluasi = $request->tgl_evaluasi;
         $simpan->tilawah_quran = $request->tilawah_quran;
         $simpan->shalat_dhuha = $request->shalat_dhuha;
@@ -93,9 +96,10 @@ class EvaluasiibadahController extends Controller
      */
     public function edit($id_evaluasi)
     {
-        $editevaluasi  = Evaluasiibadah::find($id_evaluasi);
-        return view('peserta.editevaluasi',compact('editevaluasi'));
-    }
+      $kajian = Seksikajiandhuha::all();
+      $editevaluasi  = Evaluasiibadah::find($id_evaluasi);
+      return view('peserta.editevaluasi',compact('editevaluasi','kajian'));
+  }
 
     /**
      * Update the specified resource in storage.
@@ -107,6 +111,7 @@ class EvaluasiibadahController extends Controller
     public function update(Request $request, $id_evaluasi)
     {
       $editevaluasi  = Evaluasiibadah::find($id_evaluasi);
+      $editevaluasi->id_instruktur = $request->id_instruktur;
       $editevaluasi->tgl_evaluasi = $request->tgl_evaluasi;
       $editevaluasi->tilawah_quran = $request->tilawah_quran;
       $editevaluasi->shalat_dhuha = $request->shalat_dhuha;
@@ -159,7 +164,7 @@ public function print()
     $id = Session::get('id');
     $data = Evaluasiibadah::where('id_peserta','=',$id)->count();
 
-    $biodata = Evaluasiibadah::where('id_peserta','=',$id)->get(); 
+    $biodata = Peserta::where('id_peserta','=',$id)->get(); 
      // dd($data);
     if(empty($data))
     {
@@ -170,12 +175,10 @@ public function print()
 }
 public function evaluasii()
 {
+    $id = Session::get('id');
     //$data = Peserta::all();
-    $data = Peserta::all();
-    $evaluasi = DB::table('pesertas')
-    ->join('evaluasiibadahs','evaluasiibadahs.id_peserta','=','pesertas.id_peserta')
-    ->select('pesertas.*','evaluasiibadahs.*')
-    ->get();
+    $data = Evaluasiibadah::where('id_instruktur','=',$id)->distinct()->get(['id_peserta']);
+
     return view('instruktur.evaluasibadah',compact('data'));
 }
 }

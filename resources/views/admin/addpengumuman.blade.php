@@ -6,12 +6,11 @@
 	<!-- Content Header (Page header) -->
 	<ol class="breadcrumb">
 		<li><a href="/pengumumans"><i class="fa fa-dashboard"></i> Kelola Pengumuman</a></li>
-		<li class="active">Tamabah Pengumuman</li>
+		<li class="active">Tambah Pengumuman</li>
 	</ol>
 	<section class="content-header">
 		<h1>
 			Kelola Pengumuman
-			<small>Control panel</small>
 		</h1>
 
 	</section>

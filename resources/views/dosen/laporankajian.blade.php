@@ -8,8 +8,7 @@
   </ol>
   <section class="content-header">
     <h1>
-      Kelola Laporan Kajian Dhuha
-      <small>Control panel</small>
+     Laporan Kajian Dhuha
     </h1>
 
   </section>

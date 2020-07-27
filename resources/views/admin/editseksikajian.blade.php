@@ -5,13 +5,12 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<ol class="breadcrumb">
-		<li><a href="/seksikajian"><i class="fa fa-dashboard"></i> Kelola Seksi Kajia</a></li>
+		<li><a href="/seksikajian"><i class="fa fa-dashboard"></i> Kelola Seksi Kajian</a></li>
 		<li class="active">Edit Seksi Kajian</li>
 	</ol>
 	<section class="content-header">
 		<h1>
 			Kelola Seksi Kajian
-			<small>Control panel</small>
 		</h1>
 
 	</section>

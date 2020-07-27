@@ -55,7 +55,7 @@ class LayananController extends Controller
       'judul_layanan' => $request->judul_layanan,
       'foto_layanan' => $filenameSimpan
   ]);
-    return redirect('/layanan')->with('success','Data berhasil disimpan');
+    return redirect('/klayanan')->with('success','Data berhasil disimpan');
 }
 
     /**
@@ -109,7 +109,7 @@ class LayananController extends Controller
     Storage::delete('public/layanan/'.$event->foto_layanan);
     $event->foto_layanan = $filenameSimpan;
     $event->update();
-    return redirect('/layanan')->with('success','Data berhasil diedit');
+    return redirect('/klayanan')->with('success','Data berhasil diedit');
 }
 
     /**
@@ -123,6 +123,6 @@ class LayananController extends Controller
         $layanan = Layanan::find($id);
      Storage::delete('public/layanan/'.$layanan->foto_layanan);
      $layanan->delete();
-     return redirect('/layanan')->with('success','Data berhasil dihapus');
+     return redirect('/klayanan')->with('success','Data berhasil dihapus');
     }
 }

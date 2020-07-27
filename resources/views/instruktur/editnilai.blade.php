@@ -72,6 +72,7 @@
 										<label>Praktik Shalat Jenazah</label> 	 <br>
 									</div>
 									<div class="col-sm-2">
+										<input type="hidden" name="id_peserta" value="{{$nilai->id_peserta}}">
 										<input type="number" name="kehadiran" style="max-width: 100%" value="{{$nilai->datapesertakajian->datanilai['nilai_kehadiran']}}"><br>
 										<input type="number" name="keaktifan" value="{{$nilai->datapesertakajian->datanilai['nilai_keaktifan']}}" style="max-width: 100%"><br>
 										<input type="number" name="ujianakhir" value="{{$nilai->datapesertakajian->datanilai['nilai_ujian']}}" style="max-width: 100%"><br>

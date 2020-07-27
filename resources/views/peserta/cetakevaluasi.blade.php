@@ -59,21 +59,20 @@
       <address>
 
         @foreach($biodata as $datas)
-        @foreach($datas->pesertas as $data)
-        Nama :  <strong>{{$data->nama_lengkap}}</strong><br>
-        NIM : {{$data->nama_lengkap}}<br>
-        Alamat :{{$data->alamat}}<br>
-        Jenis Kelamin : {{$data->jk}}<br>
-        Fakultas : {{$data->fakultas}}<br>
-        Dosen PAI : {{$data->dosen_pai}}<br>
-        Email: {{$data->email}}
-     
+        Nama :  <strong>{{$datas->nama_lengkap}}</strong><br>
+        NIM : {{$datas->nama_lengkap}}<br>
+        Alamat :{{$datas->alamat}}<br>
+        Jenis Kelamin : {{$datas->jk}}<br>
+        Fakultas : {{$datas->fakultas}}<br>
+        Dosen PAI : {{$datas->dosen_pai}}<br>
+        Email: {{$datas->email}}
+
       </address>
     </div>
     <div class="text-right">
-      <img src="{{Storage::url('foto/'.$data->foto)}}" width="150" height="150" class="rounded" alt="Foto Belum Di Upload">
-    </div>   @endforeach
-        @endforeach
+      <img src="{{Storage::url('foto/'.$datas->foto)}}" width="150" height="150" class="rounded" alt="Foto Belum Di Upload">
+    </div>
+    @endforeach
 
     <!-- Table row -->
     <div class="row">
@@ -92,14 +91,16 @@
           <tbody>
             @php($no = 1)
             @foreach($biodata as $prints)
+            @foreach($prints->evaluasis as $evaluasi)
             <tr>
               <td class="text-center">{{$no++}}</td>
-              <td>{{$prints->tgl_evaluasi}}</td>
-              <td>{{$prints->shalat_berjamaah}} Kali</td>
-              <td>{{$prints->tilawah_quran}} Halaman</td>
-              <td>{{$prints->shalat_dhuha}} Rakaat</td>
-              <td>{{$prints->qiyamul_lail}} Rakaat</td>
+              <td>{{$evaluasi->tgl_evaluasi}}</td>
+              <td>{{$evaluasi->shalat_berjamaah}} Kali</td>
+              <td>{{$evaluasi->tilawah_quran}} Halaman</td>
+              <td>{{$evaluasi->shalat_dhuha}} Rakaat</td>
+              <td>{{$evaluasi->qiyamul_lail}} Rakaat</td>
             </tr>
+            @endforeach
             @endforeach
           </tbody>
         </table>
@@ -148,28 +149,9 @@
   <!-- AdminLTE for demo purposes -->
   <script src="/../admin/dist/js/demo.js"></script>
 
+
   <script type="text/javascript">
-    var array = @json($datagrafik);
-
-    new Morris.Line({
-  // ID of the element in which to draw the chart.
-  element: 'myfirstchart',
-  // Chart data records -- each  ntry in this array corresponds to a point on
-  // the chart.
-
-  data: @json($datagrafik),
-
-  // The name of the data record attribute that contains x-"value"s.
-  xkey: "tgl_evaluasi",
-  // A list of names of data record attributes that contain y-"value"s.
-  ykeys: ["shalat_berjamaah","shalat_dhuha","tilawah_quran","qiyamul_lail"],
-  // Labels for the ykeys -- will be displayed when you hover over the
-  // chart.
-  labels: ["Shalat Berjamaah", "Shalat Dhuha","Tilawah Qur'an","Qiyamul Lail"]
-});
-</script>
-<script type="text/javascript">
-  window.print();
-</script>
+    window.print();
+  </script>
 </body>
 </html>

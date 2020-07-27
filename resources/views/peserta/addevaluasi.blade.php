@@ -13,7 +13,6 @@
     <h1>
       Entri Evaluasi Ibadah
     </h1>
-
   </section>
   <section class="content">
     <div class="row">
@@ -38,6 +37,14 @@
           <form role="form" action="/evaluasi" method="POST">
             @csrf
             <div class="box-body">
+              <div class="form-group">
+                <label for="exampleInputText1">Nama Instruktur</label>
+                <select class="form-control" name="id_instruktur">
+                  @foreach($kajian as $kajians)
+                  <option value="{{$kajians->tutors['id']}}">Nama Seksi : {{$kajians->seksi_kajian_dhuha}} || Nama Instruktur : {{$kajians->tutors['nama_lengkap_user']}}</option>
+                  @endforeach
+                </select>
+              </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Tanggal</label>
                 <input type="date" name="tgl_evaluasi" class="form-control" id="exampleInputText1" placeholder="Tanggal Evaluasi">

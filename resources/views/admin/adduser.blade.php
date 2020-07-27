@@ -11,7 +11,6 @@
 	<section class="content-header">
 		<h1>
 			Kelola Akun User
-			<small>Control panel</small>
 		</h1>
 
 	</section>
@@ -40,7 +39,7 @@
 						<div class="box-body">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Nama Lengkap</label>
-								<input type="text" name="nama_lengkap" class="form-control" id="exampleInputEmail1" placeholder="Nama Lengkap">
+								<input type="text" name="nama_lengkap_user" class="form-control" id="exampleInputEmail1" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Username</label>
@@ -52,7 +51,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Email</label>
-								<input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+								<input type="email" name="email_user" class="form-control" id="exampleInputEmail1" placeholder="Email">
 							</div>
 							<div class="form-group">
 								<label>Status User</label>
@@ -72,7 +71,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Kontak</label>
-								<input type="text"  name="kontak" class="form-control" id="exampleInputText1" placeholder="Kontak">
+								<input type="text"  name="kontak_user" class="form-control" id="exampleInputText1" placeholder="Kontak">
 							</div>
 						</div>
 						<!-- /.box-body -->

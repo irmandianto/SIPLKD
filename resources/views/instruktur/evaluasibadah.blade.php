@@ -4,8 +4,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Evaluasi Ibadah Kajian Dhuha</li>
+    <li><a href="#"><i class="fa fa-dashboard"></i> Evaluasi Ibadah Kajian Dhuha</a></li>
   </ol>
   <section class="content-header">
 
@@ -43,7 +42,7 @@
               <tr>
                 <th>No</th>
                 <th>Foto Peserta</th>
-                <th>Datatd Peserta</th>
+                <th>Data Peserta</th>
                 <th>Tanggal Evaluasi</th>
                 <th>Sholat Berjamaah</th>
                 <th>Tilawah Qur'an</th>
@@ -54,44 +53,54 @@
             
             <tbody>@php($no = 1)
               @foreach($data as $datas)
+              @php(                          
+              $cek = DB::table('pesertas')    
+              ->where('id_peserta', '=', "$datas->id_peserta")
+              ->get()
+              )
+              @php(
+              $cek1 = DB::table('evaluasiibadahs')    
+              ->where('id_peserta', '=', "$datas->id_peserta")
+              ->get()
+              )
               <tr>
                 <td>{{$no++}}</td>
                 <td>
-                  @if(empty($datas->foto))
+                  @if(empty($cek[0]->foto))
                   <img src="{{Storage::url('none.png')}}" width="50" height="50" class="img-circle" alt="User Image" class="img-circle">
                   @else
-                  <img src="{{ Storage::url('foto/'.$datas->foto) }}" width="50" height="50" class="img-circle" alt="User Image">
+                  <img src="{{ Storage::url('foto/'.$cek[0]->foto) }}" width="50" height="50" class="img-circle" alt="User Image">
                   @endif
                 </td>
                 <td>
-                  Nama : {{$datas->nama_lengkap}}<br>
-                  NIM : {{$datas->nim}}<br>
-                  Dosen PAI : {{$datas->dosenpai}}<br>
-                  Jenis Kelamin : {{$datas->jk}}
+                  Nama : {{$cek[0]->nama_lengkap}}<br>
+                  NIM : {{$cek[0]->nim}}<br>
+                  Dosen PAI : {{$cek[0]->dosenpai}}<br>
+                  Jenis Kelamin : {{$cek[0]->jk}}
                 </td>
                 <td>
-                  @foreach($datas->evaluasis as $t)
-                  {{$t->tgl_evaluasi}}<br>
+                  @foreach($cek1 as $nilai)
+                  {{$nilai->tgl_evaluasi}}<br>
                   @endforeach
                 </td>
                 <td>
-                  @foreach($datas->evaluasis as $t)
-                  {{$t->shalat_berjamaah}}<br>
+                  @foreach($cek1 as $nilai)
+                  {{$nilai->shalat_berjamaah}} Kali<br>
                   @endforeach
                 </td>
                 <td>
-                  @foreach($datas->evaluasis as $t)
-                  {{$t->tilawah_quran}}<br>
+                  @foreach($cek1 as $nilai)
+                  {{$nilai->tilawah_quran}} Halaman<br>
                   @endforeach
                 </td>
                 <td>
-                  @foreach($datas->evaluasis as $t)
-                  {{$t->shalat_dhuha}}<br>
+                  @foreach($cek1 as $nilai)
+                  {{$nilai->shalat_dhuha}} Rakaat<br>
                   @endforeach
                 </td>
                 <td>
-                  @foreach($datas->evaluasis as $t)
-                  {{$t->qiyamul_lail}}<br>
+                  @foreach($cek1 as $nilai)
+                  {{$nilai->qiyamul_lail}} Rakaat<br>
                   @endforeach
                 </td>
 

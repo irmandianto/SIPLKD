@@ -45,6 +45,7 @@ class EntrinilaiController extends Controller
 		]);
 		Nilaikajiandhuha::create([
 			"id_pesertakajian" => $id_pesertakajian,
+			'id_peserta' => $request->id_peserta,
 			"id_instruktur" => Session::get('id'),
 			"nilai_kehadiran" => $request->kehadiran,
 			"nilai_keaktifan" => $request->keaktifan,

@@ -10,7 +10,7 @@ class Nilaikajiandhuha extends Model
 
     protected $primaryKey = 'id_nilai';
 
-    protected $fillable = ['id_nilai','id_pesertakajian','id_instruktur','nilai_keaktifan','nilai_kehadiran','nilai_ujian','praktik_ibadah','huruf_keaktifan','huruf_kehadiran','huruf_praktikibadah','huruf_ujianakhir'];
+    protected $fillable = ['id_nilai','id_pesertakajian','id_peserta','id_instruktur','nilai_keaktifan','nilai_kehadiran','nilai_ujian','praktik_ibadah','huruf_keaktifan','huruf_kehadiran','huruf_praktikibadah','huruf_ujianakhir'];
 
     public function datapesertakajian()
     {

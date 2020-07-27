@@ -11,7 +11,6 @@
 	<section class="content-header">
 		<h1>
 			Kelola Akun User
-			<small>Control panel</small>
 		</h1>
 
 	</section>
@@ -41,7 +40,7 @@
 						<div class="box-body">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Nama Lengkap</label>
-								<input type="text" name="nama_lengkap" class="form-control" id="exampleInputEmail1" placeholder="Nama Lengkap" value="{{$editData -> nama_lengkap_user}}">
+								<input type="text" name="nama_lengkap_user" class="form-control" id="exampleInputEmail1" placeholder="Nama Lengkap" value="{{$editData -> nama_lengkap_user}}">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Username</label>
@@ -53,7 +52,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Email</label>
-								<input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{$editData->email_user}}">
+								<input type="email" name="email_user" class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{$editData->email_user}}">
 							</div>
 							<div class="form-group">
 								<label>Status User</label>
@@ -96,7 +95,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Kontak</label>
-								<input type="text"  name="kontak" class="form-control" id="exampleInputText1" placeholder="Kontak" value="{{$editData->kontak_user}}">
+								<input type="text"  name="kontak_user" class="form-control" id="exampleInputText1" placeholder="Kontak" value="{{$editData->kontak_user}}">
 							</div>
 						</div>
 						<!-- /.box-body -->
