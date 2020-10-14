@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 20, 2020 at 04:56 PM
+-- Generation Time: Jul 28, 2020 at 02:38 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -75,6 +75,7 @@ INSERT INTO `bahanmateris` (`id`, `id_dosen`, `judul_materi`, `file`, `created_a
 CREATE TABLE `evaluasiibadahs` (
   `id_evaluasi` int(10) UNSIGNED NOT NULL,
   `id_peserta` int(10) UNSIGNED NOT NULL,
+  `id_instruktur` int(11) UNSIGNED NOT NULL,
   `tgl_evaluasi` date NOT NULL,
   `shalat_berjamaah` int(11) NOT NULL,
   `shalat_dhuha` int(11) NOT NULL,
@@ -83,6 +84,15 @@ CREATE TABLE `evaluasiibadahs` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `evaluasiibadahs`
+--
+
+INSERT INTO `evaluasiibadahs` (`id_evaluasi`, `id_peserta`, `id_instruktur`, `tgl_evaluasi`, `shalat_berjamaah`, `shalat_dhuha`, `tilawah_quran`, `qiyamul_lail`, `updated_at`, `created_at`) VALUES
+(1, 2, 6, '0022-02-20', 33, 33, 33, 33, '2020-07-26 17:42:11', '2020-07-26 17:42:11'),
+(2, 2, 6, '0002-02-22', 3, 3, 3, 3, '2020-07-26 17:42:21', '2020-07-26 17:42:21'),
+(3, 2, 6, '2020-02-22', 4, 4, 4, 4, '2020-07-27 02:03:14', '2020-07-27 02:03:14');
 
 -- --------------------------------------------------------
 
@@ -177,8 +187,7 @@ CREATE TABLE `kajiandhuhas` (
 --
 
 INSERT INTO `kajiandhuhas` (`id_jadwal`, `hari_kajian`, `jam_kajian`, `akhir_kajian`, `created_at`, `updated_at`) VALUES
-(1, 'Senin', '10:10:00', '12:00:00', '2020-07-16 23:57:40', '2020-07-16 23:57:40'),
-(2, 'Selasa', '13:00:00', '15:00:00', '2020-07-17 05:47:40', '2020-07-17 05:47:40');
+(3, 'Senin', '22:02:00', '22:02:00', '2020-07-25 01:56:33', '2020-07-25 01:56:33');
 
 -- --------------------------------------------------------
 
@@ -294,6 +303,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `nilaikajiandhuhas` (
   `id_nilai` int(10) UNSIGNED NOT NULL,
   `id_pesertakajian` int(10) UNSIGNED NOT NULL,
+  `id_peserta` int(11) NOT NULL,
   `id_instruktur` int(10) UNSIGNED NOT NULL,
   `nilai_kehadiran` double(8,2) NOT NULL,
   `huruf_kehadiran` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -306,6 +316,13 @@ CREATE TABLE `nilaikajiandhuhas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nilaikajiandhuhas`
+--
+
+INSERT INTO `nilaikajiandhuhas` (`id_nilai`, `id_pesertakajian`, `id_peserta`, `id_instruktur`, `nilai_kehadiran`, `huruf_kehadiran`, `nilai_keaktifan`, `praktik_ibadah`, `nilai_ujian`, `huruf_keaktifan`, `huruf_praktikibadah`, `huruf_ujianakhir`, `created_at`, `updated_at`) VALUES
+(3, 7, 2, 6, 22.00, 'asd', 2.00, 2.00, 2.00, 'asd', 'asds', 'Delapan puluh', '2020-07-26 20:27:39', '2020-07-26 20:27:39');
 
 -- --------------------------------------------------------
 
@@ -342,6 +359,13 @@ CREATE TABLE `pesertakajiandhuhas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pesertakajiandhuhas`
+--
+
+INSERT INTO `pesertakajiandhuhas` (`id_pesertakajian`, `id_peserta`, `id_seksi_kajian_dhuha`, `created_at`, `updated_at`) VALUES
+(7, 2, 1, '2020-07-26 20:26:47', '2020-07-26 20:26:47');
 
 -- --------------------------------------------------------
 
@@ -395,6 +419,13 @@ CREATE TABLE `seksikajiandhuhas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `seksikajiandhuhas`
+--
+
+INSERT INTO `seksikajiandhuhas` (`id_seksi_kajian_dhuha`, `seksi_kajian_dhuha`, `id_instruktur`, `id_jadwal`, `kapasitas`, `created_at`, `updated_at`) VALUES
+(1, 'Pagi dhuha', 6, 3, 30, '2020-07-25 01:56:53', '2020-07-25 01:56:53');
 
 -- --------------------------------------------------------
 
@@ -453,7 +484,7 @@ INSERT INTO `users` (`id`, `nama_lengkap_user`, `username`, `password`, `email_u
 (6, 'Hanny Eka Putri212', 'hanny', '$2y$10$np8I83t1PigRTivJv9owjOZaAZ4ECZafpDwJFdI/c4eMDdIIg9JDy', 'hannyeka@gmail.com', 'Instruktur', 'Perempuan', '081233323232', 'Gambar_1594991933.png', '2020-07-16 19:34:10', '2020-07-20 08:48:38'),
 (7, 'Mela Sintia', 'mela', '$2y$10$ur.qYliYA6Ks6JIgemlFWeFdaKKchx8NriqoM4pI26dQ5anNg9Rni', 'mela@gmail.com', 'Dosen', 'Perempuan', '1232131123', '', '2020-07-16 19:37:28', '2020-07-16 19:37:28'),
 (8, 'Akbar Maulana', 'akbar', '$2y$10$mxdCFX8W82RT24M4SWgKqugVGJhq2kLkrKqAqGNrmlVeAu02XwDyS', 'akbar@gmail.com', 'Sekretaris Umum Lembaga Dakwah Kampus', 'Laki - Laki', '123123213', '', '2020-07-16 19:38:27', '2020-07-16 19:38:27'),
-(9, 'Hendra', 'hendra', '$2y$10$kDbQiOMHd0.pcnP7PziTp.6k8xPVc3dsis/hTjMosCPcfke1SwMDS', 'hendra@gmail.com', 'Sekretaris Umum Qatulistiwa Islam', 'Laki - Laki', '12312312321', '', '2020-07-16 19:39:07', '2020-07-16 19:39:07');
+(12, 'hendra1', 'hendra1', '$2y$10$zORcHMnNv4tEvhpRRrCEEORw2r144bVKT5KLy9eBHF97y7v24f7CC', 'asd@gmail.com', 'Sekretaris Umum Qatulistiwa Islam', 'Laki - Laki', 'asd', 'suratkel_1595822273.jpg', '2020-07-26 20:56:45', '2020-07-26 20:57:53');
 
 --
 -- Indexes for dumped tables
@@ -477,7 +508,8 @@ ALTER TABLE `bahanmateris`
 --
 ALTER TABLE `evaluasiibadahs`
   ADD PRIMARY KEY (`id_evaluasi`),
-  ADD KEY `evaluasiibadahs_id_peserta_foreign` (`id_peserta`);
+  ADD KEY `evaluasiibadahs_id_peserta_foreign` (`id_peserta`),
+  ADD KEY `id_instruktur` (`id_instruktur`);
 
 --
 -- Indexes for table `events`
@@ -538,7 +570,6 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `nilaikajiandhuhas`
   ADD PRIMARY KEY (`id_nilai`),
-  ADD KEY `nilaikajiandhuhas_id_peserta_foreign` (`id_pesertakajian`),
   ADD KEY `id_instruktur` (`id_instruktur`);
 
 --
@@ -610,7 +641,7 @@ ALTER TABLE `bahanmateris`
 -- AUTO_INCREMENT for table `evaluasiibadahs`
 --
 ALTER TABLE `evaluasiibadahs`
-  MODIFY `id_evaluasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_evaluasi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -640,7 +671,7 @@ ALTER TABLE `instrukturs`
 -- AUTO_INCREMENT for table `kajiandhuhas`
 --
 ALTER TABLE `kajiandhuhas`
-  MODIFY `id_jadwal` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jadwal` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kodeseksipesertas`
@@ -658,7 +689,7 @@ ALTER TABLE `laporankajians`
 -- AUTO_INCREMENT for table `layanans`
 --
 ALTER TABLE `layanans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -670,7 +701,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `nilaikajiandhuhas`
 --
 ALTER TABLE `nilaikajiandhuhas`
-  MODIFY `id_nilai` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nilai` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengumumen`
@@ -682,7 +713,7 @@ ALTER TABLE `pengumumen`
 -- AUTO_INCREMENT for table `pesertakajiandhuhas`
 --
 ALTER TABLE `pesertakajiandhuhas`
-  MODIFY `id_pesertakajian` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pesertakajian` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pesertas`
@@ -694,7 +725,7 @@ ALTER TABLE `pesertas`
 -- AUTO_INCREMENT for table `seksikajiandhuhas`
 --
 ALTER TABLE `seksikajiandhuhas`
-  MODIFY `id_seksi_kajian_dhuha` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_seksi_kajian_dhuha` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `seksikajians`
@@ -712,7 +743,7 @@ ALTER TABLE `seksipais`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -728,14 +759,14 @@ ALTER TABLE `bahanmateris`
 -- Constraints for table `evaluasiibadahs`
 --
 ALTER TABLE `evaluasiibadahs`
+  ADD CONSTRAINT `evaluasiibadahs_ibfk_1` FOREIGN KEY (`id_instruktur`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `evaluasiibadahs_id_peserta_foreign` FOREIGN KEY (`id_peserta`) REFERENCES `pesertas` (`id_peserta`);
 
 --
 -- Constraints for table `nilaikajiandhuhas`
 --
 ALTER TABLE `nilaikajiandhuhas`
-  ADD CONSTRAINT `nilaikajiandhuhas_ibfk_1` FOREIGN KEY (`id_instruktur`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `nilaikajiandhuhas_id_peserta_foreign` FOREIGN KEY (`id_pesertakajian`) REFERENCES `pesertakajiandhuhas` (`id_pesertakajian`);
+  ADD CONSTRAINT `nilaikajiandhuhas_ibfk_1` FOREIGN KEY (`id_instruktur`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `pesertakajiandhuhas`
